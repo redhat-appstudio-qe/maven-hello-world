@@ -1,0 +1,16 @@
+schemaVersion: 2.2.0
+metadata:
+  name: maven-hello-world
+  version: 1.0.0
+  provider: Red Hat
+  supportUrl: https://github.com/devfile-samples/devfile-support#support-information
+  displayName: maven-hello-world
+  description: maven-hello-world
+  tags: ["Java", "Maven"]
+  projectType: "maven"
+  language: "java"
+  attributes:
+    alpha.dockerimage-port: 8081
+parent:
+  id: java-maven
+  registryUrl: "https://registry.devfile.io"
