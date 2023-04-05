@@ -1,4 +1,4 @@
-package redhat_appstudio_qe;
+package rhtap_qe;
 
 import static org.junit.Assert.assertTrue;
 
