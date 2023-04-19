@@ -14,3 +14,43 @@ metadata:
 parent:
   id: java-maven
   registryUrl: "https://registry.devfile.io"
+components:
+  - name: outerloop-deploy
+    kubernetes:
+      inlined: |-
+        kind: Deployment
+        apiVersion: apps/v1
+        metadata:
+          name: maven-hello-world
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: maven-hello-world
+          template:
+            metadata:
+              labels:
+                app: maven-hello-world
+            spec:
+              containers:
+                - name: maven-hello-world
+                  image: maven-hello-world:latest
+                  ports:
+                    - name: http
+                      containerPort: 8081
+                      protocol: TCP
+                  resources:
+                    limits:
+                      memory: "512Mi"
+                      cpu: "500m"
+commands:
+  - id: deployk8s
+    apply:
+      component: outerloop-deploy
+  - id: deploy
+    composite:
+      commands:
+        - deployk8s
+      group:
+        kind: deploy
+        isDefault: true
